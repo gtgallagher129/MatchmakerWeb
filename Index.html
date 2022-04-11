@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+ <!-- Author: Grant Gallagher
+Project: MatchmakerWEB Lite
+--> 
+<link rel="stylesheet" href="matchmaker.css">
+ <title>Matchmaker</title>
+ <head>
+    <Title>Matchamaker</Title>
+
+</head>
+
+<body>
+    <h1>Matchmaker WebApp</h1>
+
+    <p>
+        Matchmaker <br />
+Find the Perfect One for You <br />
+    ProgrammersOnly.com<br />
+
+</p>
+    <h2>Instructions </h2>
+
+<p>❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️ <br  />
+Please go through each statement and select an option from the drop
+ down menu that best fits you.<br />
+Then going through each statement click "Calculate Our Compatability".<br />
+After that we will know exactly how well we'd work.<br  />
+</p>
+
+    <div>
+	<label>How do you feel about camping?</label><br />
+	<select id="q1">
+		<option value="10">It's a blast let's go backpacking!</option>
+		<option value="8">A weekend trip would be fun.  </option>
+		<option value="6">I could go every once in a while.</option>
+		<option value="4">I'm not the biggest fan.</option>
+		<option value="2">Ew why would I want sleep outside.</option>
+	</select>
+</div>
+	
+<div>
+	<label>How do you feel about roller coasters?</label><br />
+	<select id="q2">
+		<option value="5">I get a season pass to go each year.</option>
+		<option value="4">They're amazing, go once a year forsure.</option>
+		<option value="3">I think they're kinda fun.</option>
+		<option value="2">I'll go with friends, but never push for it.</option>
+		<option value="1">They're terrifying I would never.</option>
+	</select>
+</div>
+<div>
+	<label> How do you feel about thrifting?</label><br />
+	<select id="q3">
+		<option value="5">It's an amazing way to get some fun clothes.</option>
+		<option value="4">I like it but rarely go.</option>
+		<option value="3">I feel indifferent about it.</option>
+		<option value="2">I don't really get it.</option>
+		<option value="1">Why would I want someone elses clothes.</option>
+	</select>
+</div>
+
+<div>
+	<label>What's your favorite music genre?</label><br />
+	<select id="q4">
+		<option value="10">Metal</option>
+		<option value="8">Country</option>
+		<option value="6">Pop</option>
+		<option value="4">Indie</option>
+		<option value="2">Rock</option>
+	</select>
+</div>
+
+<div>
+	<label>How you you feel about dogs?</label><br />
+	<select id="q5">
+		<option value="15">I actually want 10 of them!</option>
+		<option value="12">I'll always have atleast one.</option>
+		<option value="9">I think other peoples dogs are fun.</option>
+		<option value="6">I don't mind them.</option>
+		<option value="3">I never want a dog.</option>
+	</select>
+</div>
+	<br /><br /><br />
+	<button onclick="calculateCompatibility()">Calculate Our Compatibility</button>
+	<p id="compatibility">
+		
+	</p>
+
+<script>
+console.log("Starting Matchmaker Lite...");
+
+function calculateCompatibility() {
+	console.log("calculateCompatibility()");
+
+	const DESIRED_RESPONSE = [
+		10, 
+        4,
+        4,
+		4,
+		12,
+	]
+
+	const MAX_SCORE = 45;
+
+	
+	let question1Response = document.getElementById("q1").selectedOptions[0].value;
+	let question2Response = document.getElementById("q2").selectedOptions[0].value;
+	let question3Response = document.getElementById("q3").selectedOptions[0].value;
+	let question4Response = document.getElementById("q4").selectedOptions[0].value;
+	let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+ 
+	console.log("Question 1 Answers:")
+	console.log(document.getElementById("q1").selectedOptions[0].text);
+	console.log(document.getElementById("q1").selectedOptions[0].value);
+	console.log(question1Response);
+
+	console.log("Question 2 Answers:");
+	console.log(document.getElementById("q2").selectedOptions[0].text);
+	console.log(document.getElementById("q2").selectedOptions[0].value);
+	console.log(question2Response);
+
+	console.log("Question 3 Answers:");
+	console.log(document.getElementById("q3").selectedOptions[0].text);
+	console.log(document.getElementById("q3").selectedOptions[0].value);
+	console.log(question3Response);
+
+    console.log("Question 4 Answers:");
+	console.log(document.getElementById("q4").selectedOptions[0].text);
+	console.log(document.getElementById("q4").selectedOptions[0].value);
+	console.log(question4Response);
+
+    console.log("Question 5 Answers:");
+	console.log(document.getElementById("q5").selectedOptions[0].text);
+	console.log(document.getElementById("q5").selectedOptions[0].value);
+	console.log(question5Response);
+
+	// Todo: Calculate compatibility scores.
+	let question1Compatibility = 10 - (Math.abs(question1Response - DESIRED_RESPONSE[0]) * 2);
+	let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+	let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatibility = 10 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatibility = 15 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+	console.log("compatabiliy1="+question1Compatibility);
+	console.log("compatability2="+question2Compatibility);
+	console.log("compatability3="+question3Compatibility);
+    console.log("compatability4="+question4Compatibility);
+    console.log("compatability5="+question5Compatibility);
+
+
+	// Calculate total compatibility. 
+	let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+
+	
+	totalCompatibility *= 100 / MAX_SCORE;
+	totalCompatibility = Math.round(totalCompatibility);
+	console.log("tc="+ totalCompatibility);
+
+	/**let phrase;
+	if (totalCompatibility = 100) {
+		phrase = "Our compatibility is " + totalCompatibility + "%" + " We whould get married";
+}	else if (totalCompatibility < 90) { 
+	phrase = "Our compatibility is " + totalCompatibility + "%" + " I could definitly see this working";
+} else if(totalCompatibility < 80) {
+	phrase = "Our compatibility is " + totalCompatibility + "%" +" I think we should plan something and see how it goes";
+} else {phrase = "Maybe we can be friends"} **/
+	
+document.getElementById("compatibility").innerHTML = "Our compatibility is " + totalCompatibility + "%";
+	
+}
+
+</script>
+</body>
+</html>
