@@ -172,14 +172,15 @@ function calculateCompatibility() {
 	totalCompatibility = Math.round(totalCompatibility);
 	console.log("tc="+ totalCompatibility);
 
-	let phrase;
+		let phrase;
 	if (totalCompatibility >= 95 ) {
-		phrase = "Our compatibility is " + totalCompatibility + "%" + " We whould get married";
-}	else if (85 >= totalCompatibility < 90) { 
-	phrase = "Our compatibility is " + totalCompatibility + "%" + " I could definitly see this working";
-} else if( 75 >= totalCompatibility < 85) {
-	phrase = "Our compatibility is " + totalCompatibility + "%" +" I think we should plan something and see how it goes";
-} else {phrase = "Our compatibility is " + totalCompatibility + "%" +  " Maybe we can be friends"}
+		phrase = "Our compatibility is " + totalCompatibility + "%" + " We should get married";
+}	else if (totalCompatibility < 95 && totalCompatibility >= 85) { 
+		phrase = "Our compatibility is " + totalCompatibility + "%" + " I could definitly see this working";
+}	else if(totalCompatibility < 85 && totalCompatibility >=75) {
+		phrase = "Our compatibility is " + totalCompatibility + "%" +" I think we should plan something and see how it goes";
+} 	else 
+		{phrase = "Our compatibility is " + totalCompatibility + "%" +  " Maybe we can be friends"}
 
 
 document.getElementById("compatibility").innerHTML = phrase;
